@@ -1,16 +1,25 @@
 const express = require("express");
 const app = express();
 const http = require("http");
-const server = http.createServer(app);
+const https = require("https");
+//const server = http.createServer(app);
 const { Server } = require("socket.io");
 const cors = require("cors");
-const io = new Server(server);
+//const io = new Server(server);
 const { json } = require("body-parser");
+const fs = require("fs");
+
+const httpsOptions = {
+    key: fs.readFileSync('../conf/key.pem'),
+    cert: fs.readFileSync('../conf/cert.pem')
+};
+
+const server = https.createServer(httpsOptions, app);
+const io = new Server(server);
 
 app.use(json());
 app.use(cors());
 app.use(express.static("public"))
-
 // {id: '23', socketId: '', text: '', users: ['name1', 'name2']}
 const rooms = [];
 
