@@ -19,7 +19,7 @@ const io = new Server(server);
 
 app.use(json());
 app.use(cors());
-app.use(express.static("public"))
+app.use(express.static("build"))
 // {id: '23', socketId: '', text: '', users: ['name1', 'name2']}
 const rooms = [];
 
@@ -66,6 +66,6 @@ io.on("connection", (socket) => {
   });
 });
 
-server.listen(3000, () => {
-  console.log("listening on *:3000");
+server.listen(443, () => {
+  console.log("listening on *:443");
 });
