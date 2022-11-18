@@ -15429,7 +15429,7 @@
     }
     loginForm.classList.add("d-none");
     editorForm.classList.remove("d-none");
-    socket = lookup2("ws://92.63.101.204:3000/", {
+    socket = lookup2("wss://92.63.101.204", {
       transports: ["websocket"]
     });
     socket.on("connect", () => {
